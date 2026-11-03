@@ -155,7 +155,7 @@ export default async function AdminDonationsPage({
                   <td className="px-5 py-3">
                     <Link
                       href={`/admin/donations/${donation.id}`}
-                      className="font-medium text-ink hover:text-grass"
+                      className="font-medium text-grass hover:text-forest"
                     >
                       {donation.donorName}
                     </Link>

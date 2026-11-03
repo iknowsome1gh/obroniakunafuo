@@ -90,10 +90,11 @@ export type Story = {
   status: StoryStatus;
 };
 
-export type StoryBlock = {
-  type: "p" | "h2" | "quote";
-  text: string;
-};
+export type StoryBlock =
+  | { type: "p"; text: string }
+  | { type: "h2"; text: string }
+  | { type: "quote"; text: string }
+  | { type: "image"; src: string; alt: string; caption?: string };
 
 export type AdminNote = {
   id: string;

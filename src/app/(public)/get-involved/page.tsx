@@ -323,7 +323,7 @@ export default async function GetInvolvedPage() {
                     </ButtonLink>
                     <Link
                       href={way.secondary.href}
-                      className="inline-flex items-center gap-1.5 text-[13px] font-medium text-ink hover:text-grass"
+                      className="inline-flex items-center gap-1.5 text-[13px] font-medium text-grass hover:text-forest"
                     >
                       {way.secondary.label}
                       <ArrowRight className="size-3.5" aria-hidden="true" />
@@ -420,7 +420,7 @@ export default async function GetInvolvedPage() {
                 Reach us directly at{" "}
                 <a
                   href={`mailto:${settings.email}`}
-                  className="underline decoration-grass/40 underline-offset-2 hover:text-ink"
+                  className="underline decoration-grass/40 underline-offset-2 hover:text-forest"
                 >
                   {settings.email}
                 </a>{" "}

@@ -13,6 +13,7 @@ import {
   FileText,
   Folder,
   Heading2,
+  Image as ImageIcon,
   Layers,
   Loader2,
   Pilcrow,
@@ -95,6 +96,12 @@ export function StoryForm({
   const formRef = useRef<HTMLFormElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
   const closePreviewRef = useRef<HTMLButtonElement>(null);
+
+  const [insertingImage, setInsertingImage] = useState(false);
+  const [insertImageUrl, setInsertImageUrl] = useState("");
+  const [insertImageAlt, setInsertImageAlt] = useState("");
+  const [insertImageError, setInsertImageError] = useState<string | null>(null);
+  const [insertImagePending, setInsertImagePending] = useState(false);
 
   const effectiveSlug = slugify(slug) || slugify(title);
   const wordCount = countWords(body);
@@ -192,6 +199,34 @@ export function StoryForm({
       const position = Math.max(lineStart, start + delta);
       textarea.setSelectionRange(position, Math.max(position, end + delta));
     });
+  }
+
+  function insertImage(src: string, alt: string) {
+    const textarea = bodyRef.current;
+    const imageMarkdown = `![${alt}](${src})`;
+    if (!textarea) {
+      setBody((prev) => (prev ? `${prev}\n\n${imageMarkdown}` : imageMarkdown));
+      setDirty(true);
+      return;
+    }
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const before = body.slice(0, start);
+    const after = body.slice(end);
+    // Ensure the image sits on its own line (paragraph break around it).
+    const nextBody =
+      before +
+      (before.endsWith("\n") ? "" : "\n") +
+      imageMarkdown +
+      (after.startsWith("\n") ? "" : "\n") +
+      after;
+    setBody(nextBody);
+    setDirty(true);
+    textarea.focus();
+    const position = start + imageMarkdown.length +
+      (before.endsWith("\n") ? 0 : 1) +
+      (after.startsWith("\n") ? 0 : 1);
+    textarea.setSelectionRange(position, position);
   }
 
   function openPreview() {
@@ -480,10 +515,64 @@ export function StoryForm({
                   {label}
                 </button>
               ))}
+              <button
+                type="button"
+                onClick={() => setInsertingImage((v) => !v)}
+                className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[10.5px] font-medium text-body transition-colors hover:bg-white hover:text-ink"
+              >
+                <ImageIcon className="size-3.5" aria-hidden="true" />
+                Insert image
+              </button>
               <span className="ml-auto hidden text-[10px] text-muted sm:inline">
                 Select a line, then choose a style
               </span>
             </div>
+
+            {insertingImage && (
+              <div className="border-t border-line bg-white px-5 py-3 sm:px-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  <ImageUploadButton
+                    variant="inline"
+                    value={insertImageUrl}
+                    onChange={setInsertImageUrl}
+                    onRemove={() => setInsertImageUrl("")}
+                  />
+                  <Field htmlFor="insertImageAlt" className="flex-1 min-w-0">
+                    <Input
+                      id="insertImageAlt"
+                      name="insertImageAlt"
+                      value={insertImageAlt}
+                      onChange={(e) => setInsertImageAlt(e.target.value)}
+                      placeholder="Describe the image"
+                      aria-label="Alt text"
+                    />
+                  </Field>
+                  <button
+                    type="button"
+                    disabled={insertImagePending || !insertImageUrl}
+                    onClick={() => {
+                      setInsertImagePending(true);
+                      setInsertImageError(null);
+                      insertImage(insertImageUrl, insertImageAlt);
+                      setInsertImagePending(false);
+                      setInsertingImage(false);
+                    }}
+                    className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-[10.5px] font-medium bg-grass text-white hover:bg-forest disabled:opacity-60"
+                  >
+                    {insertImagePending ? (
+                      <Loader2 className="size-3.5 animate-spin" />
+                    ) : (
+                      "Insert"
+                    )}
+                  </button>
+                </div>
+                {insertImageError && (
+                  <p className="mt-2 text-[10.5px] text-coral">
+                    {insertImageError}
+                  </p>
+                )}
+              </div>
+            )}
 
             <Textarea
               ref={bodyRef}
@@ -878,6 +967,27 @@ export function StoryForm({
                           >
                             &ldquo;{block.text}&rdquo;
                           </blockquote>
+                        );
+                      }
+                      if (block.type === "image") {
+                        return (
+                          <figure
+                            key={index}
+                            className="mt-2 mb-4 flex flex-col items-center relative aspect-[16/9] overflow-hidden rounded-[8px] border border-line bg-mint"
+                          >
+                            <Image
+                              src={block.src}
+                              alt={block.alt}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 640px"
+                              className="object-cover w-full h-full"
+                            />
+                            {block.caption && (
+                              <figcaption className="absolute bottom-0 left-0 right-0 px-3 py-1.5 bg-black/70 text-[10px] text-white">
+                                {block.caption}
+                              </figcaption>
+                            )}
+                          </figure>
                         );
                       }
                       return (

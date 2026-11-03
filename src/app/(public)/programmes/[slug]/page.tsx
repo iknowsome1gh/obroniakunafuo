@@ -168,7 +168,7 @@ export default async function ProgrammeDetailPage({ params }: PageProps) {
               </dl>
               <Link
                 href="/programmes"
-                className="mt-6 inline-flex items-center gap-1.5 text-[12px] font-medium text-ink hover:text-grass"
+                className="mt-6 inline-flex items-center gap-1.5 text-[12px] font-medium text-grass hover:text-forest"
               >
                 <ArrowLeft className="size-3.5" aria-hidden="true" />
                 All programmes
@@ -204,7 +204,7 @@ export default async function ProgrammeDetailPage({ params }: PageProps) {
               </h2>
               <Link
                 href="/programmes"
-                className="inline-flex items-center gap-1 text-[12px] font-medium text-ink hover:text-grass"
+                className="inline-flex items-center gap-1 text-[12px] font-medium text-grass hover:text-forest"
               >
                 View all
                 <ArrowRight className="size-3.5" aria-hidden="true" />

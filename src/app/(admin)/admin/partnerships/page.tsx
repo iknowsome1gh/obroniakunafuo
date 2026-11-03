@@ -117,7 +117,7 @@ export default async function AdminPartnershipsPage({
                     </span>
                     <Link
                       href={`/admin/partnerships/${enquiry.id}`}
-                      className="text-[13px] font-semibold text-ink hover:text-grass"
+                      className="text-[13px] font-semibold text-grass hover:text-forest"
                     >
                       {enquiry.organisation}
                     </Link>
@@ -153,7 +153,7 @@ export default async function AdminPartnershipsPage({
                 <div className="flex flex-wrap items-center gap-4">
                   <Link
                     href={`/admin/partnerships/${enquiry.id}`}
-                    className="text-[10.5px] font-semibold text-ink hover:text-grass"
+                    className="text-[10.5px] font-semibold text-grass hover:text-forest"
                   >
                     View details
                   </Link>

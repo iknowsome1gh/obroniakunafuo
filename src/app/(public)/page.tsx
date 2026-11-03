@@ -182,7 +182,7 @@ export default async function HomePage() {
             </div>
             <Link
               href="/stories"
-              className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-purple-deep transition-colors hover:text-purple"
+              className="inline-flex w-fit items-center gap-1.5 text-sm font-medium text-grass transition-colors hover:text-forest"
             >
               View annual report
               <ArrowRight className="size-4" aria-hidden="true" />
@@ -195,7 +195,7 @@ export default async function HomePage() {
                 key={stat.label}
                 className="flex flex-col border-b border-line p-6 last:border-b-0 sm:[&:nth-child(odd)]:border-r lg:border-b-0 lg:border-r-0"
               >
-                <span className="text-[32px] font-semibold tracking-tight text-purple-deep">
+                <span className="text-[32px] font-semibold tracking-tight text-grass">
                   {stat.value}
                 </span>
                 <span className="mt-2 text-sm text-body">{stat.label}</span>
@@ -250,7 +250,7 @@ export default async function HomePage() {
                   </p>
                   <Link
                     href={`/programmes/${programme.slug}`}
-                    className="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-purple-deep transition-colors hover:text-purple"
+                    className="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-grass transition-colors hover:text-forest"
                   >
                     Learn more
                     <ArrowRight className="size-3.5" aria-hidden="true" />
@@ -437,7 +437,7 @@ export default async function HomePage() {
                   </p>
                   <Link
                     href={card.href}
-                    className="mt-auto inline-flex items-center gap-1 pt-5 text-[12px] font-semibold text-purple-deep transition-colors hover:text-purple"
+                    className="mt-auto inline-flex items-center gap-1 pt-5 text-[12px] font-semibold text-grass transition-colors hover:text-forest"
                   >
                     {card.link}
                     <ArrowRight className="size-3.5" aria-hidden="true" />

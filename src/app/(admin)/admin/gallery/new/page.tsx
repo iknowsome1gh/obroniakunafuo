@@ -62,7 +62,12 @@ export function GalleryForm({
       </Field>
 
       <Field label="Image" htmlFor="galleryImage" required>
-        <ImageUploadButton value={image} onChange={setImage} variant="cover" />
+        <ImageUploadButton
+          value={image}
+          onChange={setImage}
+          variant="cover"
+          onRemove={() => setImage("")}
+        />
       </Field>
 
       <Field label="Alt text" htmlFor="galleryAlt">

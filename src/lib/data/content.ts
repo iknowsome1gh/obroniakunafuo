@@ -634,7 +634,11 @@ async function upsertProgrammeSupabase(programme: Programme) {
     cta: programme.cta,
     meta: programme.meta,
     image: programme.image,
-    image_alt: programme.imageAlt,
+    // NOTE: `image_alt` is intentionally omitted here until the
+    // `image_alt` column is added to the live `programmes` table in
+    // Supabase. Run the migration in database/add-image-alt-to-programmes.sql,
+    // then re-enable this line so alt text is persisted.
+    // image_alt: programme.imageAlt,
     featured_on_home: programme.featuredOnHome,
     show_on_programmes: programme.showOnProgrammes,
   };

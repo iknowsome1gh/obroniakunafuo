@@ -114,7 +114,7 @@ export default async function AdminMessagesPage({
                   <div className="flex flex-wrap items-center gap-2">
                     <Link
                       href={`/admin/messages/${message.id}`}
-                      className="text-[13px] font-semibold text-ink hover:text-grass"
+                      className="text-[13px] font-semibold text-grass hover:text-forest"
                     >
                       {message.name}
                     </Link>
@@ -166,7 +166,7 @@ export default async function AdminMessagesPage({
                 <div className="flex flex-wrap items-center gap-4">
                   <Link
                     href={`/admin/messages/${message.id}`}
-                    className="text-[10.5px] font-semibold text-ink hover:text-grass"
+                    className="text-[10.5px] font-semibold text-grass hover:text-forest"
                   >
                     Open details
                   </Link>

@@ -22,6 +22,14 @@ export function parseStoryBlocks(body: string): StoryBlock[] {
       if (chunk.startsWith("> ")) {
         return { type: "quote", text: chunk.slice(2).trim() } as StoryBlock;
       }
+      const image = chunk.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+      if (image) {
+        return {
+          type: "image",
+          src: image[2],
+          alt: image[1],
+        } as StoryBlock;
+      }
       return { type: "p", text: chunk.replace(/\n/g, " ") } as StoryBlock;
     });
 }
@@ -43,6 +51,7 @@ export function blocksToBody(story?: Story) {
     .map((block) => {
       if (block.type === "h2") return `## ${block.text}`;
       if (block.type === "quote") return `> ${block.text}`;
+      if (block.type === "image") return `![${block.alt}](${block.src})`;
       return block.text;
     })
     .join("\n\n");

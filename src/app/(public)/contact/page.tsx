@@ -150,7 +150,7 @@ export default async function ContactPage() {
                           ? "noreferrer"
                           : undefined
                       }
-                      className="mt-0.5 block truncate text-[13.5px] font-medium text-white hover:text-grass"
+                      className="mt-0.5 block truncate text-[13.5px] font-medium text-lime hover:text-white"
                     >
                       {contact.value}
                     </a>
@@ -191,7 +191,7 @@ export default async function ContactPage() {
                   <div>
                     <a
                       href={`tel:${phoneLinks[0] ?? ""}`}
-                      className="text-[12.5px] font-semibold text-ink hover:text-grass"
+                      className="text-[12.5px] font-semibold text-grass hover:text-forest"
                     >
                       {phones[0]}
                     </a>
@@ -202,7 +202,7 @@ export default async function ContactPage() {
                   <div>
                     <a
                       href={`tel:${phoneLinks[1] ?? ""}`}
-                      className="text-[12.5px] font-semibold text-ink hover:text-grass"
+                      className="text-[12.5px] font-semibold text-grass hover:text-forest"
                     >
                       {phones[1]}
                     </a>
@@ -227,7 +227,7 @@ export default async function ContactPage() {
                 </p>
                 <a
                   href={`mailto:${settings.email}`}
-                  className="mt-2 block break-all text-[12.5px] font-semibold text-ink hover:text-grass"
+                  className="mt-2 block break-all text-[12.5px] font-semibold text-grass hover:text-forest"
                 >
                   {settings.email}
                 </a>

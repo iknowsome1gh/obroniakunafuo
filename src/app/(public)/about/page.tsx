@@ -177,7 +177,7 @@ export default async function AboutPage() {
             </div>
             <Link
               href="/stories"
-              className="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-purple-deep hover:text-purple"
+              className="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-grass hover:text-forest"
             >
               Read our stories
               <ArrowRight className="size-4" aria-hidden="true" />

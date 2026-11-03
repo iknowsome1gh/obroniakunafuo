@@ -138,6 +138,27 @@ export default async function StoryDetailPage({ params }: PageProps) {
                     </blockquote>
                   );
                 }
+                if (block.type === "image") {
+                  return (
+                    <figure
+                      key={index}
+                      className="mt-2 mb-6 flex flex-col items-center relative aspect-[16/9] overflow-hidden rounded-[10px] border border-line bg-mint"
+                    >
+                      <Image
+                        src={block.src}
+                        alt={block.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 640px"
+                        className="object-cover w-full h-full"
+                      />
+                      {block.caption && (
+                        <figcaption className="absolute bottom-0 left-0 right-0 px-4 py-2 bg-black/60 text-[11px] text-white">
+                          {block.caption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  );
+                }
                 return (
                   <p
                     key={index}
@@ -186,7 +207,7 @@ export default async function StoryDetailPage({ params }: PageProps) {
               </a>
               <Link
                 href="/stories"
-                className="mt-4 inline-flex items-center gap-1.5 text-[12px] font-medium text-ink hover:text-grass"
+                className="mt-4 inline-flex items-center gap-1.5 text-[12px] font-medium text-grass hover:text-forest"
               >
                 <ArrowLeft className="size-3.5" aria-hidden="true" />
                 Back to all stories
@@ -278,7 +299,7 @@ export default async function StoryDetailPage({ params }: PageProps) {
             </h2>
             <Link
               href="/stories"
-              className="inline-flex items-center gap-1 text-[12px] font-medium text-ink hover:text-grass"
+              className="inline-flex items-center gap-1 text-[12px] font-medium text-grass hover:text-forest"
             >
               View all stories
               <ArrowRight className="size-3.5" aria-hidden="true" />
