@@ -1,7 +1,7 @@
 {
   "build": {
     "env": {
-      "NEXT_PUBLIC_SITE_URL": "https://obroniakunafuo.vercel.app"
+      "NEXT_PUBLIC_SITE_URL": "https://obroniakunafokuo.com/"
     }
   },
   "headers": [

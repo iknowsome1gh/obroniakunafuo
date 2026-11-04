@@ -268,10 +268,6 @@ create policy "Public can read settings"
   on settings for select
   using (true);
 
-create policy "Public can read published notifications"
-  on notifications for select
-  using (status = 'published');
-
 -- Public can submit enquiry/donation forms
 create policy "Public can insert contacts"
   on contacts for insert
